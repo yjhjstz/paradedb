@@ -10,14 +10,14 @@ pg_search is a PostgreSQL extension that enables full-text search using the BM25
 
 ### Development Setup
 ```bash
-# Initialize pgrx (replace --pg17 with your PostgreSQL version)
-cargo pgrx init --pg17=/usr/lib/postgresql/17/bin/pg_config
+# Initialize pgrx (replace --pg14 with your PostgreSQL version)
+cargo pgrx init --pg14=/usr/lib/postgresql/14/bin/pg_config
 
 # Run development server with extension loaded
 cargo pgrx run
 
 # Build with specific PostgreSQL version (avoid version conflicts)
-cargo build --no-default-features --features pg14
+cargo build --features "pg14,cbdb,pg_test"
 ```
 
 ### Testing
@@ -36,7 +36,7 @@ The tests require a `.env` file with:
 ```
 DATABASE_URL=postgres://USER_NAME@localhost:PORT/pg_search
 ```
-Where PORT = 28800 + postgres_version (e.g., 28817 for Postgres 17).
+Where PORT = 28800 + postgres_version (e.g., 28817 for Postgres 14).
 
 ### ICU Tokenizer Development
 To enable ICU tokenizer support for additional languages, add `--features icu` to build/run commands:
